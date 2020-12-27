@@ -1,0 +1,2404 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "todo",
+    "version": "0.0.1",
+    "description": "A quick introduction to loopback",
+    "contact": {
+      "name": "donaldteghen",
+      "email": "donaldteghen@gmail.com"
+    }
+  },
+  "paths": {
+    "/ping": {
+      "get": {
+        "x-controller-name": "PingController",
+        "x-operation-name": "ping",
+        "tags": [
+          "PingController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ping Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PingResponse"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "PingController.ping"
+      }
+    },
+    "/todo-list-images/count": {
+      "get": {
+        "x-controller-name": "TodoListImageController",
+        "x-operation-name": "count",
+        "tags": [
+          "TodoListImageController"
+        ],
+        "responses": {
+          "200": {
+            "description": "TodoListImage model count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "TodoListImage.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<TodoListImage>"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "TodoListImageController.count"
+      }
+    },
+    "/todo-list-images/{id}/todo-list": {
+      "get": {
+        "x-controller-name": "TodoListImageController",
+        "x-operation-name": "getTodoList",
+        "tags": [
+          "TodoListImageController"
+        ],
+        "responses": {
+          "200": {
+            "description": "TodoList belonging to TodoListImage",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TodoList"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "TodoListImageController.getTodoList"
+      }
+    },
+    "/todo-list-images/{id}": {
+      "put": {
+        "x-controller-name": "TodoListImageController",
+        "x-operation-name": "replaceById",
+        "tags": [
+          "TodoListImageController"
+        ],
+        "responses": {
+          "204": {
+            "description": "TodoListImage PUT success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TodoListImage"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "TodoListImageController.replaceById"
+      },
+      "patch": {
+        "x-controller-name": "TodoListImageController",
+        "x-operation-name": "updateById",
+        "tags": [
+          "TodoListImageController"
+        ],
+        "responses": {
+          "204": {
+            "description": "TodoListImage PATCH success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TodoListImagePartial"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "TodoListImageController.updateById"
+      },
+      "get": {
+        "x-controller-name": "TodoListImageController",
+        "x-operation-name": "findById",
+        "tags": [
+          "TodoListImageController"
+        ],
+        "responses": {
+          "200": {
+            "description": "TodoListImage model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TodoListImageWithRelations"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TodoListImage.Filter"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "TodoListImageController.findById"
+      },
+      "delete": {
+        "x-controller-name": "TodoListImageController",
+        "x-operation-name": "deleteById",
+        "tags": [
+          "TodoListImageController"
+        ],
+        "responses": {
+          "204": {
+            "description": "TodoListImage DELETE success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "TodoListImageController.deleteById"
+      }
+    },
+    "/todo-list-images": {
+      "post": {
+        "x-controller-name": "TodoListImageController",
+        "x-operation-name": "create",
+        "tags": [
+          "TodoListImageController"
+        ],
+        "responses": {
+          "200": {
+            "description": "TodoListImage model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TodoListImage"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewTodoListImage"
+              }
+            }
+          }
+        },
+        "operationId": "TodoListImageController.create"
+      },
+      "patch": {
+        "x-controller-name": "TodoListImageController",
+        "x-operation-name": "updateAll",
+        "tags": [
+          "TodoListImageController"
+        ],
+        "responses": {
+          "200": {
+            "description": "TodoListImage PATCH success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "TodoListImage.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<TodoListImage>"
+                }
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TodoListImagePartial"
+              }
+            }
+          }
+        },
+        "operationId": "TodoListImageController.updateAll"
+      },
+      "get": {
+        "x-controller-name": "TodoListImageController",
+        "x-operation-name": "find",
+        "tags": [
+          "TodoListImageController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of TodoListImage model instances",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TodoListImageWithRelations"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TodoListImage.Filter1"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "TodoListImageController.find"
+      }
+    },
+    "/todo-lists/count": {
+      "get": {
+        "x-controller-name": "TodoListController",
+        "x-operation-name": "count",
+        "tags": [
+          "TodoListController"
+        ],
+        "responses": {
+          "200": {
+            "description": "TodoList model count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "TodoList.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<TodoList>"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "TodoListController.count"
+      }
+    },
+    "/todo-lists/{id}/todo-list-image": {
+      "post": {
+        "x-controller-name": "TodoListTodoListImageController",
+        "x-operation-name": "create",
+        "tags": [
+          "TodoListTodoListImageController"
+        ],
+        "responses": {
+          "200": {
+            "description": "TodoList model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TodoListImage"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewTodoListImageInTodoList"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "TodoListTodoListImageController.create"
+      },
+      "patch": {
+        "x-controller-name": "TodoListTodoListImageController",
+        "x-operation-name": "patch",
+        "tags": [
+          "TodoListTodoListImageController"
+        ],
+        "responses": {
+          "200": {
+            "description": "TodoList.TodoListImage PATCH success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          },
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "TodoListImage.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<TodoListImage>"
+                }
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TodoListImagePartial"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "TodoListTodoListImageController.patch"
+      },
+      "get": {
+        "x-controller-name": "TodoListTodoListImageController",
+        "x-operation-name": "get",
+        "tags": [
+          "TodoListTodoListImageController"
+        ],
+        "responses": {
+          "200": {
+            "description": "TodoList has one TodoListImage",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TodoListImage"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "TodoListTodoListImageController.get"
+      },
+      "delete": {
+        "x-controller-name": "TodoListTodoListImageController",
+        "x-operation-name": "delete",
+        "tags": [
+          "TodoListTodoListImageController"
+        ],
+        "responses": {
+          "200": {
+            "description": "TodoList.TodoListImage DELETE success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          },
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "TodoListImage.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<TodoListImage>"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "TodoListTodoListImageController.delete"
+      }
+    },
+    "/todo-lists/{id}/todos": {
+      "post": {
+        "x-controller-name": "TodoListTodoController",
+        "x-operation-name": "create",
+        "tags": [
+          "TodoListTodoController"
+        ],
+        "responses": {
+          "200": {
+            "description": "TodoList model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Todo"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewTodoInTodoList"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "TodoListTodoController.create"
+      },
+      "patch": {
+        "x-controller-name": "TodoListTodoController",
+        "x-operation-name": "patch",
+        "tags": [
+          "TodoListTodoController"
+        ],
+        "responses": {
+          "200": {
+            "description": "TodoList.Todo PATCH success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          },
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Todo.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Todo>"
+                }
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TodoPartial"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "TodoListTodoController.patch"
+      },
+      "get": {
+        "x-controller-name": "TodoListTodoController",
+        "x-operation-name": "find",
+        "tags": [
+          "TodoListTodoController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of TodoList has many Todo",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Todo"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "TodoListTodoController.find"
+      },
+      "delete": {
+        "x-controller-name": "TodoListTodoController",
+        "x-operation-name": "delete",
+        "tags": [
+          "TodoListTodoController"
+        ],
+        "responses": {
+          "200": {
+            "description": "TodoList.Todo DELETE success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          },
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Todo.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Todo>"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "TodoListTodoController.delete"
+      }
+    },
+    "/todo-lists/{id}": {
+      "put": {
+        "x-controller-name": "TodoListController",
+        "x-operation-name": "replaceById",
+        "tags": [
+          "TodoListController"
+        ],
+        "responses": {
+          "204": {
+            "description": "TodoList PUT success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TodoList"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "TodoListController.replaceById"
+      },
+      "patch": {
+        "x-controller-name": "TodoListController",
+        "x-operation-name": "updateById",
+        "tags": [
+          "TodoListController"
+        ],
+        "responses": {
+          "204": {
+            "description": "TodoList PATCH success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TodoListPartial"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "TodoListController.updateById"
+      },
+      "get": {
+        "x-controller-name": "TodoListController",
+        "x-operation-name": "findById",
+        "tags": [
+          "TodoListController"
+        ],
+        "responses": {
+          "200": {
+            "description": "TodoList model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TodoListWithRelations"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TodoList.Filter"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "TodoListController.findById"
+      },
+      "delete": {
+        "x-controller-name": "TodoListController",
+        "x-operation-name": "deleteById",
+        "tags": [
+          "TodoListController"
+        ],
+        "responses": {
+          "204": {
+            "description": "TodoList DELETE success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "TodoListController.deleteById"
+      }
+    },
+    "/todo-lists": {
+      "post": {
+        "x-controller-name": "TodoListController",
+        "x-operation-name": "create",
+        "tags": [
+          "TodoListController"
+        ],
+        "responses": {
+          "200": {
+            "description": "TodoList model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TodoList"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewTodoList"
+              }
+            }
+          }
+        },
+        "operationId": "TodoListController.create"
+      },
+      "patch": {
+        "x-controller-name": "TodoListController",
+        "x-operation-name": "updateAll",
+        "tags": [
+          "TodoListController"
+        ],
+        "responses": {
+          "200": {
+            "description": "TodoList PATCH success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "TodoList.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<TodoList>"
+                }
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TodoListPartial"
+              }
+            }
+          }
+        },
+        "operationId": "TodoListController.updateAll"
+      },
+      "get": {
+        "x-controller-name": "TodoListController",
+        "x-operation-name": "find",
+        "tags": [
+          "TodoListController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of TodoList model instances",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TodoListWithRelations"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TodoList.Filter1"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "TodoListController.find"
+      }
+    },
+    "/todos/count": {
+      "get": {
+        "x-controller-name": "TodoController",
+        "x-operation-name": "count",
+        "tags": [
+          "TodoController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Todo model count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Todo.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Todo>"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "TodoController.count"
+      }
+    },
+    "/todos/{id}/todo-list": {
+      "get": {
+        "x-controller-name": "TodoController",
+        "x-operation-name": "getTodoList",
+        "tags": [
+          "TodoController"
+        ],
+        "responses": {
+          "200": {
+            "description": "TodoList belonging to Todo",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TodoList"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "TodoController.getTodoList"
+      }
+    },
+    "/todos/{id}": {
+      "put": {
+        "x-controller-name": "TodoController",
+        "x-operation-name": "replaceById",
+        "tags": [
+          "TodoController"
+        ],
+        "responses": {
+          "204": {
+            "description": "Todo PUT success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Todo"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "TodoController.replaceById"
+      },
+      "patch": {
+        "x-controller-name": "TodoController",
+        "x-operation-name": "updateById",
+        "tags": [
+          "TodoController"
+        ],
+        "responses": {
+          "204": {
+            "description": "Todo PATCH success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TodoPartial"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "TodoController.updateById"
+      },
+      "get": {
+        "x-controller-name": "TodoController",
+        "x-operation-name": "findById",
+        "tags": [
+          "TodoController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Todo model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TodoWithRelations"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Todo.Filter"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "TodoController.findById"
+      },
+      "delete": {
+        "x-controller-name": "TodoController",
+        "x-operation-name": "deleteById",
+        "tags": [
+          "TodoController"
+        ],
+        "responses": {
+          "204": {
+            "description": "Todo DELETE success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "TodoController.deleteById"
+      }
+    },
+    "/todos": {
+      "post": {
+        "x-controller-name": "TodoController",
+        "x-operation-name": "create",
+        "tags": [
+          "TodoController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Todo model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Todo"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewTodo"
+              }
+            }
+          }
+        },
+        "operationId": "TodoController.create"
+      },
+      "patch": {
+        "x-controller-name": "TodoController",
+        "x-operation-name": "updateAll",
+        "tags": [
+          "TodoController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Todo PATCH success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Todo.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Todo>"
+                }
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TodoPartial"
+              }
+            }
+          }
+        },
+        "operationId": "TodoController.updateAll"
+      },
+      "get": {
+        "x-controller-name": "TodoController",
+        "x-operation-name": "find",
+        "tags": [
+          "TodoController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of Todo model instances",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TodoWithRelations"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Todo.Filter1"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "TodoController.find"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "TodoList": {
+        "title": "TodoList",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "title": {
+            "type": "string"
+          },
+          "color": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "title"
+        ],
+        "additionalProperties": false
+      },
+      "TodoListImage": {
+        "title": "TodoListImage",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "value": {
+            "type": "string"
+          },
+          "todoListId": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "value"
+        ],
+        "additionalProperties": false
+      },
+      "NewTodoListImage": {
+        "title": "NewTodoListImage",
+        "type": "object",
+        "description": "(tsType: Omit<TodoListImage, 'id'>, schemaOptions: { title: 'NewTodoListImage', exclude: [ 'id' ] })",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "todoListId": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "value"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "Omit<TodoListImage, 'id'>"
+      },
+      "TodoWithRelations": {
+        "title": "TodoWithRelations",
+        "type": "object",
+        "description": "(tsType: TodoWithRelations, schemaOptions: { includeRelations: true })",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "title": {
+            "type": "string"
+          },
+          "desc": {
+            "type": "string"
+          },
+          "isComplete": {
+            "type": "boolean"
+          },
+          "todoListId": {
+            "type": "number"
+          },
+          "todoList": {
+            "$ref": "#/components/schemas/TodoListWithRelations"
+          }
+        },
+        "required": [
+          "title"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "TodoWithRelations"
+      },
+      "TodoListWithRelations": {
+        "title": "TodoListWithRelations",
+        "type": "object",
+        "description": "(tsType: TodoListWithRelations, schemaOptions: { includeRelations: true })",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "title": {
+            "type": "string"
+          },
+          "color": {
+            "type": "string"
+          },
+          "todos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TodoWithRelations"
+            }
+          },
+          "todoListImage": {
+            "$ref": "#/components/schemas/TodoListImageWithRelations"
+          }
+        },
+        "required": [
+          "title"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "TodoListWithRelations"
+      },
+      "TodoListImageWithRelations": {
+        "title": "TodoListImageWithRelations",
+        "type": "object",
+        "description": "(tsType: TodoListImageWithRelations, schemaOptions: { includeRelations: true })",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "value": {
+            "type": "string"
+          },
+          "todoListId": {
+            "type": "number"
+          },
+          "todoList": {
+            "$ref": "#/components/schemas/TodoListWithRelations"
+          }
+        },
+        "required": [
+          "value"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "TodoListImageWithRelations"
+      },
+      "TodoListImagePartial": {
+        "title": "TodoListImagePartial",
+        "type": "object",
+        "description": "(tsType: Partial<TodoListImage>, schemaOptions: { partial: true })",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "value": {
+            "type": "string"
+          },
+          "todoListId": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "Partial<TodoListImage>"
+      },
+      "NewTodoListImageInTodoList": {
+        "title": "NewTodoListImageInTodoList",
+        "type": "object",
+        "description": "(tsType: @loopback/repository-json-schema#Optional<Omit<TodoListImage, 'id'>, 'todoListId'>, schemaOptions: { title: 'NewTodoListImageInTodoList', exclude: [ 'id' ], optional: [ 'todoListId' ] })",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "todoListId": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "value"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository-json-schema#Optional<Omit<TodoListImage, 'id'>, 'todoListId'>"
+      },
+      "Todo": {
+        "title": "Todo",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "title": {
+            "type": "string"
+          },
+          "desc": {
+            "type": "string"
+          },
+          "isComplete": {
+            "type": "boolean"
+          },
+          "todoListId": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "title"
+        ],
+        "additionalProperties": false
+      },
+      "NewTodoInTodoList": {
+        "title": "NewTodoInTodoList",
+        "type": "object",
+        "description": "(tsType: @loopback/repository-json-schema#Optional<Omit<Todo, 'id'>, 'todoListId'>, schemaOptions: { title: 'NewTodoInTodoList', exclude: [ 'id' ], optional: [ 'todoListId' ] })",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "desc": {
+            "type": "string"
+          },
+          "isComplete": {
+            "type": "boolean"
+          },
+          "todoListId": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "title"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository-json-schema#Optional<Omit<Todo, 'id'>, 'todoListId'>"
+      },
+      "TodoPartial": {
+        "title": "TodoPartial",
+        "type": "object",
+        "description": "(tsType: Partial<Todo>, schemaOptions: { partial: true })",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "title": {
+            "type": "string"
+          },
+          "desc": {
+            "type": "string"
+          },
+          "isComplete": {
+            "type": "boolean"
+          },
+          "todoListId": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "Partial<Todo>"
+      },
+      "NewTodoList": {
+        "title": "NewTodoList",
+        "type": "object",
+        "description": "(tsType: Omit<TodoList, 'id'>, schemaOptions: { title: 'NewTodoList', exclude: [ 'id' ] })",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "color": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "title"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "Omit<TodoList, 'id'>"
+      },
+      "TodoListPartial": {
+        "title": "TodoListPartial",
+        "type": "object",
+        "description": "(tsType: Partial<TodoList>, schemaOptions: { partial: true })",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "title": {
+            "type": "string"
+          },
+          "color": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "Partial<TodoList>"
+      },
+      "NewTodo": {
+        "title": "NewTodo",
+        "type": "object",
+        "description": "(tsType: Omit<Todo, 'id'>, schemaOptions: { title: 'NewTodo', exclude: [ 'id' ] })",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "desc": {
+            "type": "string"
+          },
+          "isComplete": {
+            "type": "boolean"
+          },
+          "todoListId": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "title"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "Omit<Todo, 'id'>"
+      },
+      "PingResponse": {
+        "type": "object",
+        "title": "PingResponse",
+        "properties": {
+          "greeting": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "headers": {
+            "type": "object",
+            "properties": {
+              "Content-Type": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": true
+          }
+        }
+      },
+      "loopback.Count": {
+        "type": "object",
+        "title": "loopback.Count",
+        "x-typescript-type": "@loopback/repository#Count",
+        "properties": {
+          "count": {
+            "type": "number"
+          }
+        }
+      },
+      "TodoListImage.ScopeFilter": {
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "uniqueItems": true
+              }
+            ]
+          },
+          "include": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {},
+              "additionalProperties": true
+            }
+          }
+        },
+        "additionalProperties": false,
+        "title": "TodoListImage.ScopeFilter"
+      },
+      "TodoListImage.IncludeFilter.Items": {
+        "title": "TodoListImage.IncludeFilter.Items",
+        "type": "object",
+        "properties": {
+          "relation": {
+            "type": "string"
+          },
+          "scope": {
+            "$ref": "#/components/schemas/TodoListImage.ScopeFilter"
+          }
+        }
+      },
+      "TodoListImage.Filter": {
+        "type": "object",
+        "title": "TodoListImage.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "boolean"
+                  },
+                  "value": {
+                    "type": "boolean"
+                  },
+                  "todoListId": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "id",
+                    "value",
+                    "todoListId"
+                  ],
+                  "example": "id"
+                },
+                "uniqueItems": true
+              }
+            ],
+            "title": "TodoListImage.Fields"
+          },
+          "include": {
+            "title": "TodoListImage.IncludeFilter",
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/TodoListImage.IncludeFilter.Items"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<TodoListImage>"
+      },
+      "TodoListImage.Filter1": {
+        "type": "object",
+        "title": "TodoListImage.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "title": "TodoListImage.WhereFilter",
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "boolean"
+                  },
+                  "value": {
+                    "type": "boolean"
+                  },
+                  "todoListId": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "id",
+                    "value",
+                    "todoListId"
+                  ],
+                  "example": "id"
+                },
+                "uniqueItems": true
+              }
+            ],
+            "title": "TodoListImage.Fields"
+          },
+          "include": {
+            "title": "TodoListImage.IncludeFilter",
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/TodoListImage.IncludeFilter.Items"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<TodoListImage>"
+      },
+      "TodoList.ScopeFilter": {
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "uniqueItems": true
+              }
+            ]
+          },
+          "include": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {},
+              "additionalProperties": true
+            }
+          }
+        },
+        "additionalProperties": false,
+        "title": "TodoList.ScopeFilter"
+      },
+      "TodoList.IncludeFilter.Items": {
+        "title": "TodoList.IncludeFilter.Items",
+        "type": "object",
+        "properties": {
+          "relation": {
+            "type": "string"
+          },
+          "scope": {
+            "$ref": "#/components/schemas/TodoList.ScopeFilter"
+          }
+        }
+      },
+      "TodoList.Filter": {
+        "type": "object",
+        "title": "TodoList.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "boolean"
+                  },
+                  "title": {
+                    "type": "boolean"
+                  },
+                  "color": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "id",
+                    "title",
+                    "color"
+                  ],
+                  "example": "id"
+                },
+                "uniqueItems": true
+              }
+            ],
+            "title": "TodoList.Fields"
+          },
+          "include": {
+            "title": "TodoList.IncludeFilter",
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/TodoList.IncludeFilter.Items"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<TodoList>"
+      },
+      "TodoList.Filter1": {
+        "type": "object",
+        "title": "TodoList.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "title": "TodoList.WhereFilter",
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "boolean"
+                  },
+                  "title": {
+                    "type": "boolean"
+                  },
+                  "color": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "id",
+                    "title",
+                    "color"
+                  ],
+                  "example": "id"
+                },
+                "uniqueItems": true
+              }
+            ],
+            "title": "TodoList.Fields"
+          },
+          "include": {
+            "title": "TodoList.IncludeFilter",
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/TodoList.IncludeFilter.Items"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<TodoList>"
+      },
+      "Todo.ScopeFilter": {
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "uniqueItems": true
+              }
+            ]
+          },
+          "include": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {},
+              "additionalProperties": true
+            }
+          }
+        },
+        "additionalProperties": false,
+        "title": "Todo.ScopeFilter"
+      },
+      "Todo.IncludeFilter.Items": {
+        "title": "Todo.IncludeFilter.Items",
+        "type": "object",
+        "properties": {
+          "relation": {
+            "type": "string"
+          },
+          "scope": {
+            "$ref": "#/components/schemas/Todo.ScopeFilter"
+          }
+        }
+      },
+      "Todo.Filter": {
+        "type": "object",
+        "title": "Todo.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "boolean"
+                  },
+                  "title": {
+                    "type": "boolean"
+                  },
+                  "desc": {
+                    "type": "boolean"
+                  },
+                  "isComplete": {
+                    "type": "boolean"
+                  },
+                  "todoListId": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "id",
+                    "title",
+                    "desc",
+                    "isComplete",
+                    "todoListId"
+                  ],
+                  "example": "id"
+                },
+                "uniqueItems": true
+              }
+            ],
+            "title": "Todo.Fields"
+          },
+          "include": {
+            "title": "Todo.IncludeFilter",
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/Todo.IncludeFilter.Items"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<Todo>"
+      },
+      "Todo.Filter1": {
+        "type": "object",
+        "title": "Todo.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "title": "Todo.WhereFilter",
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "boolean"
+                  },
+                  "title": {
+                    "type": "boolean"
+                  },
+                  "desc": {
+                    "type": "boolean"
+                  },
+                  "isComplete": {
+                    "type": "boolean"
+                  },
+                  "todoListId": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "id",
+                    "title",
+                    "desc",
+                    "isComplete",
+                    "todoListId"
+                  ],
+                  "example": "id"
+                },
+                "uniqueItems": true
+              }
+            ],
+            "title": "Todo.Fields"
+          },
+          "include": {
+            "title": "Todo.IncludeFilter",
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/Todo.IncludeFilter.Items"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<Todo>"
+      }
+    }
+  }
+}
