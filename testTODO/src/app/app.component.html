@@ -1,6 +1,20 @@
-<ul class="todos">
-  <li *ngFor="let todo of todos">
-    <span class="badge">{{todo.title}}: {{todo.desc}}</span>
+<div class="container-fluid bg-light">
+  <div class="text-center bg-primary" style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 40px;">Mon
+    Repertoire Mentuielle!</div>
+  <div class="list-group">
+    <div *ngFor="let todoList of report">
+      <a class="list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">{{todoList.task}}</h5>
+          <small>3 days ago</small>
+        </div>
+        <div *ngFor="let task of todoList.taskContent">
+          <p class="mb-1">{{task}}</p>
+          <small style="color:yellow;background-color: black;">Status: Uncompleted!</small>
+        </div>
+        <span *ngIf="todoList.taskContent.length < 1" style="color: red; font-style: italic;">No Task Added.</span>
+      </a>
 
-  </li>
-</ul>
+    </div>
+  </div>
+</div>

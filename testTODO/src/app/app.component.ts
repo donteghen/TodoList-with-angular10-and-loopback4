@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
   todos: Todo[];
   todolists: TodoList[];
   id: number[];
+  report: Report[] = [];
   // add a todoService parameter of type TodoControllerService to the constructor
   constructor(private todolistService: TodoListControllerService, private todoService: TodoControllerService) { }
   // update this method to get the todo list on init
@@ -22,20 +23,25 @@ export class AppComponent implements OnInit {
   // add a new function getTodos to get the todo list from the service
   getTodos(): void {
     this.todolistService.find().subscribe(todolists => {
-      this.todolists = todolists;
-      console.log(this.todolists);
-      this.id = this.todolists.map(l => l.id);
-      console.log(this.id)
-      this.id.forEach(x => {
+      todolists.forEach(td => {
         this.todoService.find().subscribe(todos => {
-          this.todos = todos.filter(t => t.todoListId == x);
-          console.log(this.todos)
-        })
-        console.log(this.todos)
-      })
+          let hold = todos.filter(tds => tds.todoListId == td.id).map(x => x.title + " : " + x.desc);
+          this.report.push(new Report(td.title, hold));
+          console.log(this.report);
+        });
+      });
+
     });
 
   }
+
+}
+
+export class Report {
+  constructor(
+    public task?: string,
+    public taskContent?: string[]
+  ) { }
 }
 
 
